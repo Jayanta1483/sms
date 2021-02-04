@@ -11,17 +11,42 @@
 
 <body>
     <div class="container my-5">
-        <form action="">
+        <form action="" id="myForm" method="post">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Provide Mobile Number :</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1">
+                <input type="text" class="form-control" id="mobile" name="mobile">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Write Messages :</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="msg" name="msg" rows="3"></textarea></br>
+                <button class="btn btn-primary" id="sub" type="submit">SUBMIT</button>
             </div>
         </form>
     </div>
+
+
+
+    <script>
+    let form = document.getElementById('myForm');
+    const btn = document.getElementById('sub');
+
+    btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        console.log('submit')
+        const formData = new FormData(form);
+        let url = 'backend.php';
+        let data = {
+            method:'POST',
+            body: formData
+        }
+
+        fetch(url,data).then(response=> response.text().then(text=>alert(text)));
+        form.reset();
+    })
+    
+    
+    
+    </script>
 
 </body>
 
